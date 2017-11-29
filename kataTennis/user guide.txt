@@ -1,0 +1,38 @@
+Kata Tennis :
+
+Coding approach : 
+
+ We used the TDD (Test Driven Development) to undertake this kata. The TDD is an agile ppraoch of developing. It consists on :
+ 
+ 1 - Write the unit test and run it to make sure that it fails
+ 2 - Write the corresponding code and run test to verify that it passes
+ 3 - Refactor the code and run the test again to check that there is not a regression
+
+The source code contains three pacakges :
+
+1- kataTennis.test :
+	- TennisGameTest.java : Unit testing. 
+	 For Each unit test we used the BDD (Behaviour Driven Developement) way of expressing the user stories. The structure of our tests follows this format :
+			Assume [initial conditions]
+			When [Action performed by the user]
+			Assert [The result of performing the action]
+	 
+2. kataTennis.code.constants :
+	1 - Constants.java : Set of constants used in other classes
+	
+3. kataTennis.code.implementation :
+	1 - Player.java : the java bean defining the tennis player with 2 attributes : 
+		- name : string defining the name of the player
+		- score : object encapsulating the score details
+		
+	2 - Score.java : The java bean of the score details
+		- gameScore : string defining the score of the current game. It could be for a player be : [0, 15, 30, 40, ADV DEUCE]
+		- setScore : integer defining the score of the current set. This score follow the following rules :
+					- It varies between 1 and 6
+					- If a player wins a Game and reach the Set score of 6 and the other player has a Set score of 5, A new Game must be played 
+					and the first player who reach the score of 7 wins the match.
+					- If the 2 players reach the score of 6 Games , the Tie-Break rule is activated. Each time a player win a point, the score changes as follow:
+					  1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 (-> 8-> 9-> 10-> …). The Tie-Break ends as soon as a player gets a least 7 points and 2 points more than his opponent
+	 	- matchScore : integer defining the score of the match. 
+		
+	3- TennisGame.java : This class contains a set of methods to calculate the score and to display it
